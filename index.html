@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GravityA 取扱説明書</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg:       #0d1117;
+    --bg2:      #161b22;
+    --bg3:      #1c2330;
+    --border:   #30363d;
+    --accent:   #2f81f7;
+    --accent2:  #58a6ff;
+    --green:    #3fb950;
+    --yellow:   #d29922;
+    --red:      #f85149;
+    --text:     #e6edf3;
+    --text2:    #8b949e;
+    --text3:    #6e7681;
+    --nav-w:    230px;
+    --r:        8px;
+    --sans:     'Noto Sans JP', sans-serif;
+    --mono:     'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 15px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.8;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── Sidebar ── */
+  nav {
+    width: var(--nav-w);
+    min-height: 100vh;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0; left: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    z-index: 100;
+    transition: transform .3s;
+  }
+
+  .nav-logo {
+    padding: 22px 18px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo .brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent2);
+    letter-spacing: 1px;
+    display: block;
+  }
+
+  .nav-logo .sub {
+    font-size: .72rem;
+    color: var(--text3);
+    margin-top: 3px;
+    display: block;
+  }
+
+  nav ul { list-style: none; padding: 10px 0; }
+
+  nav li.sec {
+    padding: 14px 18px 4px;
+    font-size: .68rem;
+    font-weight: 700;
+    color: var(--text3);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  nav li a {
+    display: block;
+    padding: 6px 18px;
+    color: var(--text2);
+    text-decoration: none;
+    font-size: .83rem;
+    border-left: 3px solid transparent;
+    transition: all .15s;
+  }
+
+  nav li a:hover, nav li a.active {
+    color: var(--accent2);
+    background: rgba(47,129,247,.08);
+    border-left-color: var(--accent);
+  }
+
+  /* ── Main ── */
+  main { margin-left: var(--nav-w); flex: 1; padding-bottom: 100px; }
+
+  /* Hero */
+  .hero {
+    padding: 64px 64px 52px;
+    background: linear-gradient(135deg, #0d1117 0%, #0a1628 60%, #0d1117 100%);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 55% 90% at 85% 50%, rgba(47,129,247,.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 em { color: var(--accent2); font-style: normal; }
+
+  .hero-desc {
+    color: var(--text2);
+    font-size: .95rem;
+    max-width: 540px;
+    line-height: 1.85;
+    margin-bottom: 28px;
+  }
+
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 11px;
+    border-radius: 20px;
+    font-size: .72rem;
+    font-family: var(--mono);
+    border: 1px solid;
+  }
+
+  .bdg-blue  { color: var(--accent2); border-color: rgba(88,166,255,.3);  background: rgba(88,166,255,.07); }
+  .bdg-gray  { color: var(--text2);   border-color: var(--border);          background: var(--bg3); }
+
+  /* Sections */
+  section {
+    padding: 52px 64px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-child { border-bottom: none; }
+
+  h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent2);
+    margin: 30px 0 12px;
+  }
+
+  h3:first-child { margin-top: 0; }
+
+  p { color: var(--text2); margin-bottom: 10px; }
+  p:last-child { margin-bottom: 0; }
+  p strong { color: var(--text); }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin: 18px 0;
+  }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .card.c-blue::before   { background: var(--accent); }
+  .card.c-green::before  { background: var(--green); }
+
+  .card-title { font-weight: 700; font-size: .95rem; color: var(--text); margin-bottom: 4px; }
+  .card-label {
+    font-size: .7rem;
+    font-family: var(--mono);
+    color: var(--text3);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .card p { font-size: .86rem; }
+
+  /* Table */
+  .tw { overflow-x: auto; margin: 14px 0; border-radius: var(--r); border: 1px solid var(--border); }
+
+  table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+
+  th {
+    background: var(--bg3);
+    color: var(--text2);
+    font-weight: 600;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: .78rem;
+    letter-spacing: .03em;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text2);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+  td:first-child { color: var(--text); font-weight: 500; white-space: nowrap; }
+
+  /* LED dots */
+  .led {
+    display: inline-block;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 4px;
+    position: relative;
+    top: -1px;
+  }
+
+  .led-green  { background: #3fb950; box-shadow: 0 0 7px #3fb950; }
+  .led-blue   { background: #4a8fff; box-shadow: 0 0 7px #4a8fff; }
+  .led-red    { background: #f85149; box-shadow: 0 0 7px #f85149; }
+
+  /* Steps */
+  .steps { counter-reset: step; list-style: none; margin: 14px 0; }
+
+  .steps li {
+    counter-increment: step;
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+
+  .steps li::before {
+    content: counter(step);
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .78rem;
+    font-weight: 700;
+    margin-top: 3px;
+  }
+
+  .step-title { font-weight: 600; color: var(--text); font-size: .92rem; }
+  .step-desc  { font-size: .86rem; color: var(--text2); margin-top: 2px; }
+
+  /* Notice */
+  .notice {
+    display: flex;
+    gap: 12px;
+    padding: 13px 16px;
+    border-radius: var(--r);
+    margin: 14px 0;
+    font-size: .875rem;
+    align-items: flex-start;
+  }
+
+  .notice .ni { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+  .notice p   { margin: 0; color: inherit; font-size: .875rem; }
+
+  .n-info    { background: rgba(47,129,247,.09);  border: 1px solid rgba(47,129,247,.25); color: #79b9ff; }
+  .n-warn    { background: rgba(210,153,34,.09);  border: 1px solid rgba(210,153,34,.3);  color: #daa52a; }
+  .n-danger  { background: rgba(248,81,73,.1);    border: 1px solid rgba(248,81,73,.3);   color: #f87168; }
+  .n-success { background: rgba(63,185,80,.09);   border: 1px solid rgba(63,185,80,.3);   color: #4ac762; }
+
+  /* Two col */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 18px 0;
+  }
+
+  /* Chips */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 9px;
+    border-radius: 4px;
+    font-size: .72rem;
+    font-weight: 600;
+    border: 1px solid;
+    margin: 2px;
+  }
+
+  .chip-bt   { color: var(--accent2); border-color: rgba(88,166,255,.3); background: rgba(88,166,255,.08); }
+  .chip-usb  { color: var(--green);   border-color: rgba(63,185,80,.3);  background: rgba(63,185,80,.08); }
+  .chip-no   { color: var(--text3);   border-color: var(--border);        background: var(--bg3); }
+
+  /* Back to top */
+  .btt {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 40px; height: 40px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: .9rem;
+    box-shadow: 0 4px 14px rgba(47,129,247,.4);
+    z-index: 200;
+    transition: transform .2s;
+  }
+
+  .btt:hover { transform: translateY(-2px); }
+
+  /* Burger */
+  .burger {
+    display: none;
+    position: fixed;
+    top: 12px; left: 12px;
+    z-index: 300;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px; height: 40px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* FAQ accordion */
+  details {
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    margin-bottom: 8px;
+    background: var(--bg2);
+  }
+
+  details summary {
+    padding: 14px 18px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: .9rem;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+  }
+
+  details summary::before {
+    content: '›';
+    color: var(--accent);
+    font-size: 1.1rem;
+    transition: transform .2s;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary::-webkit-details-marker { display: none; }
+
+  details .faq-body {
+    padding: 14px 18px 16px 44px;
+    font-size: .875rem;
+    color: var(--text2);
+    line-height: 1.8;
+    border-top: 1px solid var(--border);
+  }
+
+  details .faq-body ul {
+    margin: 8px 0 0 16px;
+    color: var(--text2);
+  }
+
+  /* responsive */
+  @media (max-width: 800px) {
+    :root { --nav-w: 0px; }
+    nav { transform: translateX(-230px); width: 230px; }
+    nav.open { transform: translateX(0); }
+    main { margin-left: 0; }
+    section, .hero { padding: 40px 22px; }
+    h2 { font-size: 1.2rem; }
+    .hero h1 { font-size: 2.1rem; }
+    .two-col { grid-template-columns: 1fr; }
+    .burger { display: flex; }
+  }
+</style>
+</head>
+<body>
+
+<button class="burger" id="burger">☰</button>
+
+<!-- ── Sidebar ── -->
+<nav id="nav">
+  <div class="nav-logo">
+    <span class="brand">GravityA</span>
+    <span class="sub">取扱説明書</span>
+  </div>
+  <ul>
+    <li class="sec">はじめに</li>
+    <li><a href="#overview">GravityA とは</a></li>
+    <li><a href="#lineup">製品ラインナップ</a></li>
+    <li><a href="#led">本体 LED の見方</a></li>
+
+    <li class="sec">PC版</li>
+    <li><a href="#pc-start">起動と接続</a></li>
+    <li><a href="#pc-measure">計測の基本操作</a></li>
+    <li><a href="#pc-data">データの登録・管理</a></li>
+    <li><a href="#pc-settings">設定</a></li>
+    <li><a href="#pc-calibration">校正</a></li>
+
+    <li class="sec">Android版</li>
+    <li><a href="#android-req">ご利用の前に</a></li>
+    <li><a href="#android-connect">Bluetooth 接続</a></li>
+    <li><a href="#android-measure">計測の基本操作</a></li>
+    <li><a href="#android-data">データの登録・管理</a></li>
+    <li><a href="#android-calibration">校正</a></li>
+
+    <li class="sec">機能説明</li>
+    <li><a href="#hold">ホールド機能</a></li>
+    <li><a href="#autozero">自動ゼロリセット</a></li>
+    <li><a href="#overload">過負荷について</a></li>
+
+    <li class="sec">サポート</li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ul>
+</nav>
+
+<!-- ── Main ── -->
+<main>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-label">エステック株式会社</div>
+    <h1>Gravity<em>A</em><br>取扱説明書</h1>
+    <p class="hero-desc">GravityA は、部品計数・電線長計算・容器重量管理などの重量計測業務を効率化するシステムです。</p>
+    <div class="badge-row">
+      <span class="badge bdg-blue">PC版 対応</span>
+      <span class="badge bdg-blue">Android版 対応</span>
+      <span class="badge bdg-gray">エステック株式会社</span>
+    </div>
+  </div>
+
+  <!-- ── OVERVIEW ── -->
+  <section id="overview">
+    <h2>🔎 GravityA とは</h2>
+    <p>GravityA は、専用の計量デバイス（本体）と PC またはスマートフォンを接続して使用する精密重量計測システムです。</p>
+    <p>重量を計るだけでなく、あらかじめ登録しておいた部品・電線・容器のデータと照合することで、作業の効率化をサポートします。</p>
+
+    <div class="card-grid" style="margin-top: 22px;">
+      <div class="card c-blue">
+        <div class="card-title">部品計数</div>
+        <p>部品を山盛りにして乗せるだけで、個数を自動計算します。1個ずつ数える手間を省けます。</p>
+      </div>
+      <div class="card c-blue">
+        <div class="card-title">電線長計算</div>
+        <p>カットした電線を乗せると、重量から長さ（m）を自動計算します。</p>
+      </div>
+      <div class="card c-blue">
+        <div class="card-title">容器重量管理</div>
+        <p>容器（トレーやケースなど）の重量を登録しておくと、中身だけの正味重量を自動で表示します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LINEUP ── -->
+  <section id="lineup">
+    <h2>📦 製品ラインナップ</h2>
+    <p>GravityA には、接続方法の異なる 2 つのモデルがあります。</p>
+
+    <div class="two-col" style="margin-top: 20px;">
+      <div class="card c-green">
+        <div class="card-title">GravityA（通常版）</div>
+        <span class="card-label">USB接続専用</span>
+        <p>USB ケーブルで PC と接続して使用するスタンダードモデルです。</p>
+        <br>
+        <span class="chip chip-usb">✔ PC版</span>
+        <span class="chip chip-no">✘ Android版</span>
+      </div>
+      <div class="card c-blue">
+        <div class="card-title">GravityA-BT（Bluetooth版）</div>
+        <span class="card-label">USB + Bluetooth</span>
+        <p>USB 接続に加え、Bluetooth でスマートフォンとも接続できるモデルです。</p>
+        <br>
+        <span class="chip chip-usb">✔ PC版</span>
+        <span class="chip chip-bt">✔ Android版</span>
+      </div>
+    </div>
+
+    <div class="notice n-warn" style="margin-top: 20px;">
+      <span class="ni">⚠️</span>
+      <p><strong>Android版をご利用の場合は GravityA-BT が必要です。</strong><br>通常版（GravityA）は Bluetooth 非搭載のため、Android版アプリとは接続できません。</p>
+    </div>
+  </section>
+
+  <!-- ── LED ── -->
+  <section id="led">
+    <h2>💡 本体 LED の見方</h2>
+    <p>本体に搭載されたランプ（LED）が、現在の状態を色でお知らせします。</p>
+
+    <div class="tw" style="margin-top: 18px;">
+      <table>
+        <thead>
+          <tr><th>色</th><th>状態</th><th>説明</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="led led-green"></span>緑</td>
+            <td>待機中</td>
+            <td>電源は入っていますが、PC・スマートフォンとは未接続の状態です。</td>
+          </tr>
+          <tr>
+            <td><span class="led led-blue"></span>青</td>
+            <td>接続中</td>
+            <td>PC またはスマートフォンと接続されており、計測できる状態です。</td>
+          </tr>
+          <tr>
+            <td><span class="led led-red"></span>赤</td>
+            <td>過負荷</td>
+            <td>計量できる重さの上限を超えています。すぐに荷物を取り除いてください。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="notice n-danger">
+      <span class="ni">🔴</span>
+      <p><strong>ランプが赤くなったら、すぐに荷物を取り除いてください。</strong> そのままにするとデバイスが破損するおそれがあります。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ PC VERSION ══════════ -->
+
+  <section id="pc-start">
+    <h2>💻 PC版 ― 起動と接続</h2>
+
+    <ol class="steps">
+      <li>
+        <div>
+          <div class="step-title">本体と PC を USB ケーブルで接続する</div>
+          <div class="step-desc">本体の LED が <span class="led led-green"></span>緑に点灯することを確認してください。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">「GravityA.exe」をダブルクリックして起動する</div>
+          <div class="step-desc">前回接続した状態が記憶されている場合は、自動で接続されます。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">接続を確認する</div>
+          <div class="step-desc">本体の LED が <span class="led led-blue"></span>青に変わり、画面に重量が表示されれば接続完了です。</div>
+        </div>
+      </li>
+    </ol>
+
+    <h3>手動で接続する場合</h3>
+    <p>自動接続されない場合は、画面上部の「ポート選択」から本体のポートを選んで「接続」ボタンをクリックしてください。一度接続すると、次回起動時からは自動で接続されます。</p>
+  </section>
+
+  <section id="pc-measure">
+    <h2>⚖️ PC版 ― 計測の基本操作</h2>
+
+    <ol class="steps">
+      <li>
+        <div>
+          <div class="step-title">「測定開始」ボタンをクリックする</div>
+          <div class="step-desc">重量がリアルタイムで画面に表示されます。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">計量するものをロードセルに乗せる</div>
+          <div class="step-desc">値が安定するまで数秒お待ちください。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">必要に応じて「ゼロリセット」をクリックする</div>
+          <div class="step-desc">容器ごと計量する場合は、容器だけを乗せてからゼロリセットすると、中身だけの正味重量（差引重量）が表示されます。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">リストから部品・電線を選ぶ</div>
+          <div class="step-desc">登録済みのデータを選択すると、個数や長さが自動で計算されます。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">終わったら「測定停止」をクリックする</div>
+        </div>
+      </li>
+    </ol>
+
+    <h3>画面の表示項目</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>表示</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>総重量</td><td>現在ロードセルに乗っているものの合計重量（容器込み）</td></tr>
+          <tr><td>差引重量</td><td>ゼロリセット後の正味重量。容器の重さを除いた値です。</td></tr>
+          <tr><td>個数 / 長さ</td><td>部品または電線のデータを選択したときに自動表示されます。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>モード切替</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>モード</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td>重量計モード</td><td>部品・電線・容器データと照合しながら計測するときに使います。通常はこちらを使用します。</td></tr>
+          <tr><td>測定モード</td><td>データとの照合なしに、重量値だけを確認したいときに使います。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="pc-data">
+    <h2>🗂️ PC版 ― データの登録・管理</h2>
+
+    <h3>登録できるデータの種類</h3>
+    <div class="card-grid">
+      <div class="card c-blue">
+        <div class="card-title">部品</div>
+        <p>P.C. 番号・型番・1個あたりの重量を登録します。計測時に個数を自動計算します。</p>
+      </div>
+      <div class="card c-blue">
+        <div class="card-title">電線</div>
+        <p>P.C. 番号・型番・1mあたりの重量を登録します。計測時に長さ（m）を自動計算します。</p>
+      </div>
+      <div class="card c-blue">
+        <div class="card-title">容器</div>
+        <p>容器の名前と重量を登録します。計測時に容器の重さを自動で差し引いて表示します。</p>
+      </div>
+    </div>
+
+    <h3>データの登録方法</h3>
+    <ol class="steps">
+      <li>
+        <div>
+          <div class="step-title">「システム設定」→「部品マスタ」を開く</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">P.C. / 型番 / 重量を入力する</div>
+          <div class="step-desc">「計測値を取得」ボタンを押すと、現在の計測値を自動で入力できます。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">「保存」をクリックする</div>
+          <div class="step-desc">同じ P.C. 番号がすでに登録されている場合は、上書き確認のメッセージが表示されます。</div>
+        </div>
+      </li>
+    </ol>
+
+    <h3>データの検索</h3>
+    <p>リスト上部の検索ボックスに P.C. 番号または型番を入力して絞り込めます。「全表示」ボタンですべての一覧に戻ります。</p>
+
+    <h3>バックアップについて</h3>
+    <p>登録したデータは、ソフトと同じ場所にある <strong>「gravity_data」フォルダ</strong> に保存されています。このフォルダをまるごとコピーするだけでバックアップになります。別の PC への移行もこのフォルダをコピーするだけです。</p>
+  </section>
+
+  <section id="pc-settings">
+    <h2>⚙️ PC版 ― 設定</h2>
+
+    <h3>詳細設定</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>設定項目</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>並び順</td><td>リストを P.C. 番号または型番で並び替えできます。昇順・降順を選択できます。</td></tr>
+          <tr><td>P.C. 名称</td><td>「P.C.」という表示名を任意の名前に変更できます。</td></tr>
+          <tr><td>小数点桁数</td><td>重量の表示桁数を 0〜3 桁の間で変更できます。</td></tr>
+          <tr><td>単位自動変換</td><td>ON にすると、1000g 以上で自動的に kg 表示に切り替わります。</td></tr>
+          <tr><td>マーキースクロール</td><td>リストの長い文字が流れるように表示されます。ON / OFF を切り替えられます。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>ホールド設定</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>設定項目</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>安定判定時間</td><td>この秒数の間ぶれがなければ、値を固定（ホールド）します。</td></tr>
+          <tr><td>安定閾値</td><td>この割合（%）以内の変化なら「安定している」とみなします。</td></tr>
+          <tr><td>起動時 ON</td><td>ソフトを起動したとき、自動的にホールド機能をONにします。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>閾値設定（許容差）</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>設定項目</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>許容差タイプ</td><td>+（以上）/ −（以下）/ ±（前後）から選べます。</td></tr>
+          <tr><td>許容差 %</td><td>計算結果に対してどの範囲を許容するかを設定します。</td></tr>
+          <tr><td>丸め処理</td><td>個数・長さの計算結果を、切り上げ・切り捨て・四捨五入・なし から選べます。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="pc-calibration">
+    <h2>🎯 PC版 ― 校正</h2>
+
+    <p>校正とは、本体が正確な重量を表示できるように基準を合わせる作業です。初めてご使用の際や、精度が気になるときに行ってください。</p>
+
+    <div class="notice n-warn">
+      <span class="ni">⚠️</span>
+      <p>校正には<strong>重量のわかっている分銅（おもり）</strong>が必要です。分銅が正確なほど測定精度が上がります。</p>
+    </div>
+
+    <h3>校正の種類</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>種類</th><th>特徴</th></tr></thead>
+        <tbody>
+          <tr><td>精密校正</td><td>時間はかかりますが精度が高いです。通常はこちらをお使いください。</td></tr>
+          <tr><td>高速校正</td><td>短時間で完了します。精度はやや劣ります。急いでいる場合の再校正に適しています。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>校正の手順（精密校正）</h3>
+    <ol class="steps">
+      <li>
+        <div>
+          <div class="step-title">「システム設定」→「校正」を開く</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">ロードセルに何も乗せない状態で「精密校正」をクリック</div>
+          <div class="step-desc">台座・容器などはすべて取り除いてから行ってください。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">ゼロ点の計測が完了するのを待つ（数秒）</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">分銅を乗せ、その重量（g）を入力して「OK」をクリック</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">確認測定値が表示されたら校正完了</div>
+        </div>
+      </li>
+    </ol>
+
+    <div class="notice n-success">
+      <span class="ni">✅</span>
+      <p>校正値は本体に記憶されます。電源を切っても次回起動時に引き継がれるため、毎回校正し直す必要はありません。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ ANDROID VERSION ══════════ -->
+
+  <section id="android-req">
+    <h2>📱 Android版 ― ご利用の前に</h2>
+
+    <div class="notice n-warn">
+      <span class="ni">⚠️</span>
+      <p><strong>Android版のご利用には GravityA-BT（Bluetooth版）が必要です。</strong><br>通常版（GravityA）では Android版アプリと接続できません。</p>
+    </div>
+
+    <div class="tw" style="margin-top: 18px;">
+      <table>
+        <thead><tr><th>項目</th><th>条件</th></tr></thead>
+        <tbody>
+          <tr><td>必要な本体</td><td>GravityA-BT（Bluetooth版）</td></tr>
+          <tr><td>スマートフォン</td><td>Android 8.0 以上、Bluetooth 対応機種</td></tr>
+          <tr><td>インターネット接続</td><td>不要（すべてオフラインで動作します）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="android-connect">
+    <h2>📡 Android版 ― Bluetooth 接続</h2>
+
+    <ol class="steps">
+      <li>
+        <div>
+          <div class="step-title">本体に USB ケーブルで電源を入れる</div>
+          <div class="step-desc">本体の LED が <span class="led led-green"></span>緑に点灯することを確認してください。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">スマートフォンの Bluetooth をオンにする</div>
+          <div class="step-desc">設定アプリから Bluetooth をオンにします。事前のペアリング操作は不要です。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">GravityA アプリを起動して「接続」をタップ</div>
+          <div class="step-desc">スキャンが始まり、周囲のデバイスが一覧表示されます。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">「GravityA」を選択する</div>
+          <div class="step-desc">接続が完了すると、本体の LED が <span class="led led-blue"></span>青に変わります。</div>
+        </div>
+      </li>
+    </ol>
+
+    <div class="notice n-info">
+      <span class="ni">ℹ️</span>
+      <p>接続が途切れた場合は、「接続」→「切断」→「接続」の順に操作して再接続してください。</p>
+    </div>
+  </section>
+
+  <section id="android-measure">
+    <h2>⚖️ Android版 ― 計測の基本操作</h2>
+
+    <h3>画面構成</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>表示・ボタン</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>総重量</td><td>現在の計測値です。</td></tr>
+          <tr><td>差引重量</td><td>ゼロリセット後の正味重量です。</td></tr>
+          <tr><td>ホールド OFF/ON</td><td>タップするとホールド機能をON/OFFできます。</td></tr>
+          <tr><td>自動ゼロリセット OFF/ON</td><td>タップすると自動ゼロリセットをON/OFFできます。</td></tr>
+          <tr><td>部品 / 電線 / 容器 タブ</td><td>登録済みのデータを種類別に表示します。</td></tr>
+          <tr><td>ゼロリセット</td><td>現在の重量を差し引いて、正味重量の計測を開始します。</td></tr>
+          <tr><td>測定開始 / 停止</td><td>計測を開始・停止します。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>計測の流れ</h3>
+    <ol class="steps">
+      <li>
+        <div>
+          <div class="step-title">「測定開始」をタップする</div>
+          <div class="step-desc">重量のリアルタイム表示が始まります。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">必要に応じて容器を乗せて「ゼロリセット」をタップ</div>
+          <div class="step-desc">容器ごと計量する場合に行います。差引重量に中身だけの重量が表示されます。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">計量するものを乗せ、タブから該当データを選ぶ</div>
+          <div class="step-desc">部品・電線タブから行をタップすると、個数や長さが自動計算されます。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">「測定停止」をタップして終了する</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="android-data">
+    <h2>🗂️ Android版 ― データの登録・管理</h2>
+
+    <h3>データの登録・編集</h3>
+    <p>画面左上のメニューボタン（☰）→「部品マスタ」から、部品・電線・容器のデータを登録・編集・削除できます。</p>
+
+    <h3>バックアップと復元</h3>
+    <p>メニュー（☰）→「データベース設定」からデータの書き出し（エクスポート）と読み込み（インポート）ができます。機種変更や万が一のデータ消失に備えて、定期的にエクスポートしておくことをおすすめします。</p>
+
+    <div class="notice n-warn">
+      <span class="ni">⚠️</span>
+      <p>アプリを削除するとデータも一緒に削除されます。大切なデータは必ずエクスポートしてバックアップしてください。</p>
+    </div>
+
+    <div class="notice n-info">
+      <span class="ni">ℹ️</span>
+      <p>PC版と Android版のデータは自動では同期されません。同じデータを両方で使いたい場合はインポート機能をご利用ください。</p>
+    </div>
+  </section>
+
+  <section id="android-calibration">
+    <h2>🎯 Android版 ― 校正</h2>
+
+    <p>メニュー（☰）→「校正」から行います。Bluetooth 接続済みの状態で実施してください。</p>
+
+    <div class="notice n-warn">
+      <span class="ni">⚠️</span>
+      <p>校正には重量のわかっている分銅が必要です。</p>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <div>
+          <div class="step-title">「校正」を開き、校正の種類を選ぶ</div>
+          <div class="step-desc">通常は「精密校正」をお使いください。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">画面の指示に従い、何も乗せない状態で「OK」をタップ</div>
+          <div class="step-desc">ゼロ点の計測が行われます。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">分銅を乗せ、その重量（g）を入力して送信する</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">確認測定値が表示されたら校正完了</div>
+          <div class="step-desc">校正値は本体に記憶されます。電源を切っても保持されます。</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ══════════ FEATURES ══════════ -->
+
+  <section id="hold">
+    <h2>🔒 ホールド機能</h2>
+
+    <p>重量が一定時間安定したとき、自動的にその値を固定（ホールド）する機能です。計量物を素早く入れ替える作業などで、値が読み取りやすくなります。</p>
+
+    <ol class="steps">
+      <li>
+        <div>
+          <div class="step-title">ホールドを ON にする</div>
+          <div class="step-desc">PC版はメイン画面の「ホールド」ボタン、Android版は「ホールドOFF」のトグルをタップします。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">計量物を乗せる</div>
+          <div class="step-desc">重量が安定すると、自動的に値が固定されます（🔒 アイコンが表示されます）。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">計量物を取り除く</div>
+          <div class="step-desc">ホールドが自動で解除され、次の計量の待機状態になります。</div>
+        </div>
+      </li>
+    </ol>
+
+    <p>「ホールド設定」から、安定とみなすまでの時間や変化の許容幅を調整できます。</p>
+
+    <div class="notice n-info">
+      <span class="ni">ℹ️</span>
+      <p>ホールド中はゼロリセットが無効になります。ゼロリセットが必要な場合は、先にホールドを解除してください。</p>
+    </div>
+  </section>
+
+  <section id="autozero">
+    <h2>⟳ 自動ゼロリセット</h2>
+
+    <p>計量物を取り除いて重量がゼロ付近で安定したとき、自動的にゼロリセットを行う機能です。同じ容器を繰り返し使う作業などで便利です。</p>
+    <p>PC版・Android版ともに、メイン画面の「自動ゼロリセット」ボタンで ON / OFF を切り替えられます。PC版の設定では、起動時に自動で ON にすることもできます。</p>
+  </section>
+
+  <section id="overload">
+    <h2>🔴 過負荷について</h2>
+
+    <p>本体の計量部品（ロードセル）には、計量できる重さの上限（定格）があります。これを大きく超えると過負荷として検出されます。</p>
+
+    <div class="tw" style="margin: 18px 0;">
+      <table>
+        <thead><tr><th>状態</th><th>LED</th><th>画面表示</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>過負荷検出</td>
+            <td><span class="led led-red"></span>赤点灯</td>
+            <td>「OVERLOAD」と赤文字で表示されます</td>
+          </tr>
+          <tr>
+            <td>過負荷解除</td>
+            <td>元の色に戻る</td>
+            <td>通常の重量表示に戻ります</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="notice n-danger">
+      <span class="ni">🚨</span>
+      <p><strong>「OVERLOAD」が表示されたら、すぐに荷物を取り除いてください。</strong><br>長時間そのままにすると、ロードセルが破損して計量精度が失われるおそれがあります。</p>
+    </div>
+
+    <div class="notice n-info">
+      <span class="ni">ℹ️</span>
+      <p>ロードセルの定格重量は購入時にご確認ください。定格を超える重量は乗せないようにしてください。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ FAQ ══════════ -->
+
+  <section id="faq">
+    <h2>❓ よくある質問</h2>
+
+    <details>
+      <summary>PC版が起動しない・エラーが出る</summary>
+      <div class="faq-body">
+        <p>本体が USB でパソコンに接続されているか確認してください。また、本体の LED が点灯していることも確認してください。ソフトを一度閉じて、本体を USB から抜き差ししてから再起動してみてください。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>接続はできているのに重量が表示されない</summary>
+      <div class="faq-body">
+        <p>「測定開始」ボタンをクリック（またはタップ）してから計量してください。測定開始前は重量は更新されません。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>重量の値がふらついて安定しない</summary>
+      <div class="faq-body">
+        <p>ロードセルが振動しやすい場所に置かれていないか確認してください。ホールド機能をONにすると、安定したときの値を自動で固定できます。「ホールド設定」の安定判定時間を長くすると、より確実に安定値を捉えられます。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>校正したのに重量がずれている</summary>
+      <div class="faq-body">
+        <p>校正に使った分銅の重量が正確かどうかをご確認ください。また、校正中にロードセルや台座が動いていると精度が下がります。振動のない安定した場所で再度校正してください。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Android版でデバイスが見つからない</summary>
+      <div class="faq-body">
+        <p>以下の点をご確認ください。</p>
+        <ul>
+          <li>お使いの本体が GravityA-BT（Bluetooth版）であること</li>
+          <li>スマートフォンの Bluetooth がオンになっていること</li>
+          <li>本体の LED が<span class="led led-green" style="margin-left:4px;"></span>緑または<span class="led led-blue" style="margin-left:4px;"></span>青に点灯していること</li>
+          <li>スマートフォンの設定でアプリへの位置情報の権限が許可されていること</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>本体の LED が赤く光っている</summary>
+      <div class="faq-body">
+        <p>過負荷の状態です。ロードセルの定格を超える重量が加わっています。すぐに荷物を取り除いてください。荷物を取り除くと LED は元の色に戻ります。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>電源を切ると校正値はリセットされますか？</summary>
+      <div class="faq-body">
+        <p>いいえ。校正値は本体内部に記憶されるため、電源を切っても保持されます。通常、校正は最初の1回だけ行えば問題ありません。精度が気になる場合は再校正してください。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>PC版のデータをバックアップしたい</summary>
+      <div class="faq-body">
+        <p>GravityA.exe と同じ場所にある <strong>「gravity_data」フォルダ</strong> をまるごとコピーしてください。このフォルダに登録データがすべて保存されています。別の PC に移行する場合も、このフォルダをコピーするだけです。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>Android版のデータが消えてしまった</summary>
+      <div class="faq-body">
+        <p>アプリのアンインストールや端末の初期化を行うとデータが削除されます。定期的に「データベース設定」→「エクスポート」でバックアップを取ることをおすすめします。</p>
+      </div>
+    </details>
+
+  </section>
+
+</main>
+
+<!-- Back to top -->
+<a href="#" class="btt" title="トップへ">↑</a>
+
+<script>
+  // Mobile nav
+  const burger = document.getElementById('burger');
+  const nav    = document.getElementById('nav');
+  const mask   = Object.assign(document.createElement('div'), {
+    style: 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90;display:none'
+  });
+  document.body.appendChild(mask);
+
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    mask.style.display = open ? 'block' : 'none';
+  });
+  mask.addEventListener('click', () => {
+    nav.classList.remove('open');
+    mask.style.display = 'none';
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    mask.style.display = 'none';
+  }));
+
+  // Active nav highlight on scroll
+  const links = [...nav.querySelectorAll('a[href^="#"]')];
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = nav.querySelector(`a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-25% 0px -65% 0px' });
+
+  document.querySelectorAll('section[id]').forEach(s => io.observe(s));
+</script>
+
+</body>
+</html>
