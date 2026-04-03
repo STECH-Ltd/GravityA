@@ -510,11 +510,11 @@
     <div class="card-grid" style="margin-top: 22px;">
       <div class="card c-blue">
         <div class="card-title">部品計数</div>
-        <p>部品を山盛りにして乗せるだけで、個数を自動計算します。1個ずつ数える手間を省けます。</p>
+        <p>部品を山盛りにして乗せるだけで、個数を自動計算します。<br>1個ずつ数える手間を省けます。</p>
       </div>
       <div class="card c-blue">
         <div class="card-title">電線長計算</div>
-        <p>カットした電線を乗せると、重量から長さ（m）を自動計算します。</p>
+        <p>カットした電線を乗せると、重量から長さ（m）を自動計算します。<br>途中まで使用した在庫品の長さを出すのに便利です。</p>
       </div>
       <div class="card c-blue">
         <div class="card-title">容器重量管理</div>
@@ -540,7 +540,7 @@
       <div class="card c-blue">
         <div class="card-title">GravityA-BT（Bluetooth版）</div>
         <span class="card-label">USB + Bluetooth</span>
-        <p>USB 接続に加え、Bluetooth でスマートフォンとも接続できるモデルです。</p>
+        <p>USB 接続に加え、Bluetooth でスマートフォンとも接続できるモデルです。モバイルバッテリーで給電することで完全無線化することもできます。</p>
         <br>
         <span class="chip chip-usb">✔ PC版</span>
         <span class="chip chip-bt">✔ Android版</span>
@@ -550,6 +550,11 @@
     <div class="notice n-warn" style="margin-top: 20px;">
       <span class="ni">⚠️</span>
       <p><strong>Android版をご利用の場合は GravityA-BT が必要です。</strong><br>通常版（GravityA）は Bluetooth 非搭載のため、Android版アプリとは接続できません。</p>
+    </div>
+
+    <div class="notice n-info" style="margin-top: 12px;">
+      <span class="ni">🔋</span>
+      <p><strong>GravityA-BT はモバイルバッテリーで完全無線化できます。</strong><br>ただし GravityA-BT は消費電力が非常に少ないため、低電流を検知して自動オフする機能（オートオフ機能）を搭載したモバイルバッテリーでは電源として使用できない場合があります。オートオフ機能のないモバイルバッテリーをお使いください。</p>
     </div>
   </section>
 
@@ -576,16 +581,16 @@
           </tr>
           <tr>
             <td><span class="led led-red"></span>赤</td>
-            <td>過負荷</td>
-            <td>計量できる重さの上限を超えています。すぐに荷物を取り除いてください。</td>
+            <td>過負荷（推定）</td>
+            <td>校正値をもとに過負荷と推定されている状態です。あくまで目安であり、必ずしも定格超過を意味するわけではありません。荷物が重すぎる可能性があるため、取り除くことをお勧めします。</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="notice n-danger">
-      <span class="ni">🔴</span>
-      <p><strong>ランプが赤くなったら、すぐに荷物を取り除いてください。</strong> そのままにするとデバイスが破損するおそれがあります。</p>
+    <div class="notice n-warn">
+      <span class="ni">⚠️</span>
+      <p><strong>ランプが赤く点灯した場合は、荷物が重すぎる可能性があります。</strong> 赤点灯は校正値をもとにした目安の表示です。必ずしも定格超過を意味するわけではありませんが、長時間そのままにするとロードセルへの負担となるため、荷物を取り除くことをお勧めします。</p>
     </div>
   </section>
 
@@ -610,13 +615,13 @@
       <li>
         <div>
           <div class="step-title">接続を確認する</div>
-          <div class="step-desc">本体の LED が <span class="led led-blue"></span>青に変わり、画面に重量が表示されれば接続完了です。</div>
+          <div class="step-desc">本体の LED が <span class="led led-blue"></span>青に変わり、ステータスバーに接続が表示されれば接続完了です。</div>
         </div>
       </li>
     </ol>
 
     <h3>手動で接続する場合</h3>
-    <p>自動接続されない場合は、画面上部の「ポート選択」から本体のポートを選んで「接続」ボタンをクリックしてください。一度接続すると、次回起動時からは自動で接続されます。</p>
+    <p>自動接続されない場合は、画面上部の「再接続」」ボタンをクリックしてください。一度接続すると、次回起動時からは自動で接続されます。</p>
   </section>
 
   <section id="pc-measure">
@@ -671,10 +676,14 @@
       <table>
         <thead><tr><th>モード</th><th>用途</th></tr></thead>
         <tbody>
-          <tr><td>重量計モード</td><td>部品・電線・容器データと照合しながら計測するときに使います。通常はこちらを使用します。</td></tr>
-          <tr><td>測定モード</td><td>データとの照合なしに、重量値だけを確認したいときに使います。</td></tr>
+          <tr><td>重量計モード</td><td>データとの照合なしに、重量値だけを確認したいときに使います。</td></tr>
+          <tr><td>測定モード</td><td>部品・電線・容器データと照合しながら計測するときに使います。</td></tr>
         </tbody>
       </table>
+    </div>
+    <div class="notice n-info">
+      <span class="ni">ℹ️</span>
+      <p>リストから部品または電線を選択すると、自動的に測定モードに切り替わります。選択を解除すると重量計モードに戻ります。</p>
     </div>
   </section>
 
@@ -697,17 +706,23 @@
       </div>
     </div>
 
-    <h3>データの登録方法</h3>
+    <h3>新規追加</h3>
     <ol class="steps">
       <li>
         <div>
-          <div class="step-title">「システム設定」→「部品マスタ」を開く</div>
+          <div class="step-title">メニューから「部品マスタ」を開く</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">「新規追加」ボタンをクリックする</div>
+          <div class="step-desc">入力フォームが表示されます。</div>
         </div>
       </li>
       <li>
         <div>
           <div class="step-title">P.C. / 型番 / 重量を入力する</div>
-          <div class="step-desc">「計測値を取得」ボタンを押すと、現在の計測値を自動で入力できます。</div>
+          <div class="step-desc">重量はあらかじめ計測した値を直接入力します。</div>
         </div>
       </li>
       <li>
@@ -718,11 +733,60 @@
       </li>
     </ol>
 
+    <h3>編集</h3>
+    <ol class="steps">
+      <li>
+        <div>
+          <div class="step-title">リストから編集したい項目を選択する</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">「編集」ボタンをクリックする</div>
+          <div class="step-desc">現在の登録内容がフォームに表示されます。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">内容を修正して「保存」をクリックする</div>
+        </div>
+      </li>
+    </ol>
+
+    <h3>削除</h3>
+    <ol class="steps">
+      <li>
+        <div>
+          <div class="step-title">リストから削除したい項目を選択する</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">「削除」ボタンをクリックする</div>
+          <div class="step-desc">確認メッセージが表示されます。「はい」をクリックすると削除されます。削除したデータは元に戻せません。</div>
+        </div>
+      </li>
+    </ol>
+
     <h3>データの検索</h3>
     <p>リスト上部の検索ボックスに P.C. 番号または型番を入力して絞り込めます。「全表示」ボタンですべての一覧に戻ります。</p>
 
     <h3>バックアップについて</h3>
     <p>登録したデータは、ソフトと同じ場所にある <strong>「gravity_data」フォルダ</strong> に保存されています。このフォルダをまるごとコピーするだけでバックアップになります。別の PC への移行もこのフォルダをコピーするだけです。</p>
+    <p>ネットワーク上の共有フォルダ（NASや外部ストレージなど）を SMB でマウントしている場合は、そのドライブ上にデータフォルダを設定することもできます。複数のPCから同じデータを参照したい場合に便利です。</p>
+
+    <h3>データベース設定</h3>
+    <p>メニューから「データベース設定」を開くと、データの保存先フォルダを変更できます。</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:200px;">機能</th><th>説明</th></tr></thead>
+        <tbody>
+          <tr><td>データフォルダの変更</td><td>データの保存先を任意のフォルダに変更できます。SMBでマウントした共有フォルダを指定することで、複数のPCから同じデータを参照できます。</td></tr>
+          <tr><td>エクスポート</td><td>登録されているすべてのデータをファイルに書き出します。バックアップや別のPCへの移行に使用します。</td></tr>
+          <tr><td>インポート</td><td>エクスポートしたファイルからデータを読み込みます。既存のデータとの重複は確認メッセージが表示されます。</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section id="pc-settings">
@@ -731,12 +795,14 @@
     <h3>詳細設定</h3>
     <div class="tw">
       <table>
+        <colgroup><col style="width:220px"><col></colgroup>
         <thead><tr><th>設定項目</th><th>内容</th></tr></thead>
         <tbody>
-          <tr><td>並び順</td><td>リストを P.C. 番号または型番で並び替えできます。昇順・降順を選択できます。</td></tr>
+          <tr><td>並び順</td><td>リストを 「P.C.」「型番」「重量」で並び替えできます。昇順・降順を選択できます。</td></tr>
           <tr><td>P.C. 名称</td><td>「P.C.」という表示名を任意の名前に変更できます。</td></tr>
           <tr><td>小数点桁数</td><td>重量の表示桁数を 0〜3 桁の間で変更できます。</td></tr>
           <tr><td>単位自動変換</td><td>ON にすると、1000g 以上で自動的に kg 表示に切り替わります。</td></tr>
+          <tr><td>自動ゼロリセット（起動時）</td><td>ON にすると、ソフト起動時に自動でゼロリセットを実行します。毎回同じ容器を使う場合などに便利です。</td></tr>
           <tr><td>マーキースクロール</td><td>リストの長い文字が流れるように表示されます。ON / OFF を切り替えられます。</td></tr>
         </tbody>
       </table>
@@ -745,10 +811,12 @@
     <h3>ホールド設定</h3>
     <div class="tw">
       <table>
+        <colgroup><col style="width:220px"><col></colgroup>
         <thead><tr><th>設定項目</th><th>内容</th></tr></thead>
         <tbody>
-          <tr><td>安定判定時間</td><td>この秒数の間ぶれがなければ、値を固定（ホールド）します。</td></tr>
-          <tr><td>安定閾値</td><td>この割合（%）以内の変化なら「安定している」とみなします。</td></tr>
+          <tr><td>バッファ時間</td><td>この秒数の間ぶれがなければ、値を固定（ホールド）します。</td></tr>
+          <tr><td>感度</td><td>この割合（%）以内の変化なら「安定している」とみなします。</td></tr>
+          <tr><td>表示桁数と判定精度を一致させる</td><td>ON にすると、表示している小数点桁数に合わせてホールドの判定精度を自動調整します。</td></tr>
           <tr><td>起動時 ON</td><td>ソフトを起動したとき、自動的にホールド機能をONにします。</td></tr>
         </tbody>
       </table>
@@ -757,6 +825,7 @@
     <h3>閾値設定（許容差）</h3>
     <div class="tw">
       <table>
+        <colgroup><col style="width:220px"><col></colgroup>
         <thead><tr><th>設定項目</th><th>内容</th></tr></thead>
         <tbody>
           <tr><td>許容差タイプ</td><td>+（以上）/ −（以下）/ ±（前後）から選べます。</td></tr>
@@ -777,43 +846,58 @@
       <p>校正には<strong>重量のわかっている分銅（おもり）</strong>が必要です。分銅が正確なほど測定精度が上がります。</p>
     </div>
 
-    <h3>校正の種類</h3>
+    <h3>校正モードの種類</h3>
     <div class="tw">
       <table>
-        <thead><tr><th>種類</th><th>特徴</th></tr></thead>
+        <thead><tr><th>モード</th><th>特徴</th></tr></thead>
         <tbody>
-          <tr><td>精密校正</td><td>時間はかかりますが精度が高いです。通常はこちらをお使いください。</td></tr>
-          <tr><td>高速校正</td><td>短時間で完了します。精度はやや劣ります。急いでいる場合の再校正に適しています。</td></tr>
+          <tr><td>精密</td><td>精度 0.01g。時間はかかりますが高精度な校正ができます。通常はこちらをお使いください。</td></tr>
+          <tr><td>簡易</td><td>精度はやや低下しますが実用上は十分です。短時間で完了します。</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3>校正の手順（精密校正）</h3>
+    <h3>校正の手順</h3>
     <ol class="steps">
       <li>
         <div>
-          <div class="step-title">「システム設定」→「校正」を開く</div>
+          <div class="step-title">メニューから「校正」を開く</div>
+          <div class="step-desc">「自動キャリブレーション」画面が表示されます。アプリが自動でゼロ点調整も行います。</div>
         </div>
       </li>
       <li>
         <div>
-          <div class="step-title">ロードセルに何も乗せない状態で「精密校正」をクリック</div>
-          <div class="step-desc">台座・容器などはすべて取り除いてから行ってください。</div>
+          <div class="step-title">校正モードを選ぶ</div>
+          <div class="step-desc">「精密」または「簡易」をラジオボタンで選択します。通常は「精密」をお使いください。</div>
         </div>
       </li>
       <li>
         <div>
-          <div class="step-title">ゼロ点の計測が完了するのを待つ（数秒）</div>
+          <div class="step-title">分銅の重量を入力して「保存」をクリック</div>
+          <div class="step-desc">使用する分銅の重量（g）を入力します。「保存」をクリックすると次回以降も同じ値が自動で入力されます。</div>
         </div>
       </li>
       <li>
         <div>
-          <div class="step-title">分銅を乗せ、その重量（g）を入力して「OK」をクリック</div>
+          <div class="step-title">「キャリブレーション実行」をクリック</div>
+          <div class="step-desc">校正が開始されます。</div>
         </div>
       </li>
       <li>
         <div>
-          <div class="step-title">確認測定値が表示されたら校正完了</div>
+          <div class="step-title">スケールに何も乗せていない状態にする</div>
+          <div class="step-desc">画面の指示に従い、台座・容器などをすべて取り除いてください。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">③で入力した重量の分銅を乗せる</div>
+          <div class="step-desc">画面の指示に従って分銅を乗せます。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">校正完了</div>
         </div>
       </li>
     </ol>
@@ -839,8 +923,20 @@
         <thead><tr><th>項目</th><th>条件</th></tr></thead>
         <tbody>
           <tr><td>必要な本体</td><td>GravityA-BT（Bluetooth版）</td></tr>
-          <tr><td>スマートフォン</td><td>Android 8.0 以上、Bluetooth 対応機種</td></tr>
-          <tr><td>インターネット接続</td><td>不要（すべてオフラインで動作します）</td></tr>
+          <tr><td>スマートフォン</td><td>Android 10 以上推奨（Android 10・16 にて動作確認済み）、Bluetooth 対応機種</td></tr>
+          <tr><td>インターネット接続</td><td>通常の計測操作はオフラインで動作します。プライバシーポリシーや取扱説明書の閲覧には接続が必要です。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>初回起動時の権限許可</h3>
+    <p>アプリを初めて起動したとき、以下の権限の許可を求めるダイアログが表示されます。いずれも「許可」をタップしてください。</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>権限</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td>Bluetooth</td><td>GravityA-BT との通信に使用します。</td></tr>
+          <tr><td>位置情報</td><td>Android の仕様上、Bluetooth スキャンに位置情報の権限が必要です。位置情報を取得・記録することはありません。</td></tr>
         </tbody>
       </table>
     </div>
@@ -871,10 +967,17 @@
       <li>
         <div>
           <div class="step-title">「GravityA」を選択する</div>
-          <div class="step-desc">接続が完了すると、本体の LED が <span class="led led-blue"></span>青に変わります。</div>
+          <div class="step-desc">接続が完了すると、本体の LED が <span class="led led-blue"></span>青に変わります。接続中は画面上部のインジケーター下に接続先の MACアドレス下4桁が表示されます。</div>
         </div>
       </li>
     </ol>
+
+    <h3>近くに複数の GravityA-BT がある場合</h3>
+    <p>複数の GravityA-BT が周囲にある状態で「接続」をタップすると、どのデバイスに接続するかを選ぶ画面が表示されます。各デバイスの MACアドレスが一覧に表示されるので、接続したい本体の裏面に貼られた MACアドレスと照合して選択してください。</p>
+    <div class="notice n-info">
+      <span class="ni">ℹ️</span>
+      <p>接続後は画面上部のインジケーター下に MACアドレスの下4桁（英数字）が表示されます。接続先の確認にご利用ください。</p>
+    </div>
 
     <div class="notice n-info">
       <span class="ni">ℹ️</span>
@@ -943,10 +1046,9 @@
       <p>アプリを削除するとデータも一緒に削除されます。大切なデータは必ずエクスポートしてバックアップしてください。</p>
     </div>
 
-    <div class="notice n-info">
-      <span class="ni">ℹ️</span>
-      <p>PC版と Android版のデータは自動では同期されません。同じデータを両方で使いたい場合はインポート機能をご利用ください。</p>
-    </div>
+    <h3>PC版とのデータ共有について</h3>
+    <p>データの保存先がスマートフォンの<strong>端末内ストレージ</strong>の場合、PC版とは自動では同期されません。端末内のデータを他の端末でも使いたい場合は、エクスポートしたファイルを別の端末でインポートすることで復元できます。</p>
+    <p>保存先を<strong>外部ストレージ（SDカードや共有フォルダなど）</strong>に設定している場合は、PC版と同一のデータを参照することができます。</p>
   </section>
 
   <section id="android-calibration">
@@ -962,24 +1064,42 @@
     <ol class="steps">
       <li>
         <div>
-          <div class="step-title">「校正」を開き、校正の種類を選ぶ</div>
-          <div class="step-desc">通常は「精密校正」をお使いください。</div>
+          <div class="step-title">メニュー（☰）→「校正」を開く</div>
+          <div class="step-desc">Bluetooth 接続済みの状態で行ってください。</div>
         </div>
       </li>
       <li>
         <div>
-          <div class="step-title">画面の指示に従い、何も乗せない状態で「OK」をタップ</div>
-          <div class="step-desc">ゼロ点の計測が行われます。</div>
+          <div class="step-title">校正モードを選ぶ</div>
+          <div class="step-desc">「精密」または「簡易」を選択します。通常は「精密」をお使いください。</div>
         </div>
       </li>
       <li>
         <div>
-          <div class="step-title">分銅を乗せ、その重量（g）を入力して送信する</div>
+          <div class="step-title">分銅の重量を入力して「保存」をタップ</div>
+          <div class="step-desc">次回以降も同じ値が自動で入力されます。</div>
         </div>
       </li>
       <li>
         <div>
-          <div class="step-title">確認測定値が表示されたら校正完了</div>
+          <div class="step-title">「キャリブレーション実行」をタップ</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">スケールに何も乗せていない状態にする</div>
+          <div class="step-desc">画面の指示に従い、台座・容器などをすべて取り除いてください。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">③で入力した重量の分銅を乗せる</div>
+          <div class="step-desc">画面の指示に従って分銅を乗せます。</div>
+        </div>
+      </li>
+      <li>
+        <div>
+          <div class="step-title">校正完了</div>
           <div class="step-desc">校正値は本体に記憶されます。電源を切っても保持されます。</div>
         </div>
       </li>
@@ -997,13 +1117,13 @@
       <li>
         <div>
           <div class="step-title">ホールドを ON にする</div>
-          <div class="step-desc">PC版はメイン画面の「ホールド」ボタン、Android版は「ホールドOFF」のトグルをタップします。</div>
+          <div class="step-desc">PC版はメイン画面の「ホールド」ボタン、Android版は「ホールドOFF」のトグルをタップします。🔒 アイコンはホールド機能のON/OFFを示します。</div>
         </div>
       </li>
       <li>
         <div>
           <div class="step-title">計量物を乗せる</div>
-          <div class="step-desc">重量が安定すると、自動的に値が固定されます（🔒 アイコンが表示されます）。</div>
+          <div class="step-desc">重量が安定すると、自動的に値が固定されます。ホールドされた数値にはエフェクトが付いて表示されます。</div>
         </div>
       </li>
       <li>
@@ -1015,11 +1135,6 @@
     </ol>
 
     <p>「ホールド設定」から、安定とみなすまでの時間や変化の許容幅を調整できます。</p>
-
-    <div class="notice n-info">
-      <span class="ni">ℹ️</span>
-      <p>ホールド中はゼロリセットが無効になります。ゼロリセットが必要な場合は、先にホールドを解除してください。</p>
-    </div>
   </section>
 
   <section id="autozero">
@@ -1032,29 +1147,30 @@
   <section id="overload">
     <h2>🔴 過負荷について</h2>
 
-    <p>本体の計量部品（ロードセル）には、計量できる重さの上限（定格）があります。これを大きく超えると過負荷として検出されます。</p>
+    <p>過負荷の検出は、校正時に設定された基準値をもとに推定しています。そのため、表示はあくまで目安です。ロードセルの定格重量（1kg / 5kg / 10kg / 20kg など）を確認のうえ、定格を大幅に超えるような使い方はお控えください。</p>
 
     <div class="tw" style="margin: 18px 0;">
       <table>
-        <thead><tr><th>状態</th><th>LED</th><th>画面表示</th></tr></thead>
+        <thead><tr><th>状態</th><th>LED</th><th>PC版の表示</th><th>Android版の表示</th></tr></thead>
         <tbody>
           <tr>
-            <td>過負荷検出</td>
+            <td>過負荷検出（推定）</td>
             <td><span class="led led-red"></span>赤点灯</td>
-            <td>「OVERLOAD」と赤文字で表示されます</td>
+            <td>ステータスバーに「過負荷」と表示され、数値が赤くなります</td>
+            <td>数値が赤くなります</td>
           </tr>
           <tr>
             <td>過負荷解除</td>
             <td>元の色に戻る</td>
-            <td>通常の重量表示に戻ります</td>
+            <td colspan="2">通常の重量表示に戻ります</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="notice n-danger">
-      <span class="ni">🚨</span>
-      <p><strong>「OVERLOAD」が表示されたら、すぐに荷物を取り除いてください。</strong><br>長時間そのままにすると、ロードセルが破損して計量精度が失われるおそれがあります。</p>
+    <div class="notice n-warn">
+      <span class="ni">⚠️</span>
+      <p><strong>数値が赤くなったら、荷物が重すぎる可能性があります。</strong><br>この表示は校正値をもとにした推定のため、必ずしも定格超過を意味するわけではありません。ただし、長時間そのままにするとロードセルへの負担となるため、荷物を取り除くことをお勧めします。</p>
     </div>
 
     <div class="notice n-info">
@@ -1112,7 +1228,7 @@
     <details>
       <summary>本体の LED が赤く光っている</summary>
       <div class="faq-body">
-        <p>過負荷の状態です。ロードセルの定格を超える重量が加わっています。すぐに荷物を取り除いてください。荷物を取り除くと LED は元の色に戻ります。</p>
+        <p>校正値をもとに過負荷と推定されている状態です。必ずしも定格を超えているとは限りませんが、荷物が重すぎる可能性があります。PC版ではステータスバーに「過負荷」と表示され数値が赤くなります。Android版では数値が赤くなります。荷物を取り除くと LED は元の色に戻ります。頻繁に赤点灯する場合は、ロードセルの定格重量に対して計量物が重すぎないか確認してください。</p>
       </div>
     </details>
 
