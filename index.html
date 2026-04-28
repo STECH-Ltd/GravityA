@@ -540,7 +540,7 @@
       <div class="card c-blue">
         <div class="card-title">GravityA-BT（Bluetooth版）</div>
         <span class="card-label">USB + Bluetooth</span>
-        <p>USB 接続に加え、Bluetooth でスマートフォンとも接続できるモデルです。モバイルバッテリーで給電することで完全無線化することもできます。</p>
+        <p>USB 接続に加え、Bluetooth でスマートフォンとも接続できるモデルです。</p>
         <br>
         <span class="chip chip-usb">✔ PC版</span>
         <span class="chip chip-bt">✔ Android版</span>
@@ -550,11 +550,6 @@
     <div class="notice n-warn" style="margin-top: 20px;">
       <span class="ni">⚠️</span>
       <p><strong>Android版をご利用の場合は GravityA-BT が必要です。</strong><br>通常版（GravityA）は Bluetooth 非搭載のため、Android版アプリとは接続できません。</p>
-    </div>
-
-    <div class="notice n-info" style="margin-top: 12px;">
-      <span class="ni">🔋</span>
-      <p><strong>GravityA-BT はモバイルバッテリーで完全無線化できます。</strong><br>ただし GravityA-BT は消費電力が非常に少ないため、低電流を検知して自動オフする機能（オートオフ機能）を搭載したモバイルバッテリーでは電源として使用できない場合があります。オートオフ機能のないモバイルバッテリーをお使いください。</p>
     </div>
   </section>
 
@@ -681,10 +676,6 @@
         </tbody>
       </table>
     </div>
-    <div class="notice n-info">
-      <span class="ni">ℹ️</span>
-      <p>リストから部品または電線を選択すると、自動的に測定モードに切り替わります。選択を解除すると重量計モードに戻ります。</p>
-    </div>
   </section>
 
   <section id="pc-data">
@@ -776,16 +767,41 @@
     <p>ネットワーク上の共有フォルダ（NASや外部ストレージなど）を SMB でマウントしている場合は、そのドライブ上にデータフォルダを設定することもできます。複数のPCから同じデータを参照したい場合に便利です。</p>
 
     <h3>データベース設定</h3>
-    <p>メニューから「データベース設定」を開くと、データの保存先フォルダを変更できます。</p>
+    <p>設定ウィンドウ内の「データベース」タブから、データの保存場所とネットワーク認証情報を設定できます。</p>
+
+    <h4 style="font-size:.9rem; font-weight:700; color:var(--text); margin:18px 0 8px;">データベース保存場所</h4>
+    <p>データの保存先（gravity_dataフォルダ）を変更できます。現在の保存先がタブ上部に表示されます。</p>
     <div class="tw">
       <table>
-        <thead><tr><th style="width:200px;">機能</th><th>説明</th></tr></thead>
+        <colgroup><col style="width:160px"><col></colgroup>
+        <thead><tr><th>ボタン</th><th>説明</th></tr></thead>
         <tbody>
-          <tr><td>データフォルダの変更</td><td>データの保存先を任意のフォルダに変更できます。SMBでマウントした共有フォルダを指定することで、複数のPCから同じデータを参照できます。</td></tr>
-          <tr><td>エクスポート</td><td>登録されているすべてのデータをファイルに書き出します。バックアップや別のPCへの移行に使用します。</td></tr>
-          <tr><td>インポート</td><td>エクスポートしたファイルからデータを読み込みます。既存のデータとの重複は確認メッセージが表示されます。</td></tr>
+          <tr><td>フォルダを選択</td><td>保存先の gravity_data フォルダを直接選択します。フォルダが存在しない場合は自動的に作成されます。</td></tr>
+          <tr><td>デフォルトに戻す</td><td>保存先をインストール時の初期設定に戻します。</td></tr>
         </tbody>
       </table>
+    </div>
+    <div class="notice n-info">
+      <span class="ni">ℹ️</span>
+      <p>UNCパス（例：<code style="font-family:monospace; background:rgba(255,255,255,.08); padding:1px 5px; border-radius:3px;">\サーバー名\共有フォルダ\gravity_data</code>）を直接入力することもできます。変更後はアプリを再起動してください。</p>
+    </div>
+
+    <h4 style="font-size:.9rem; font-weight:700; color:var(--text); margin:18px 0 8px;">ネットワーク認証情報（SMB / UNCパス使用時）</h4>
+    <p>ネットワーク上の共有フォルダを保存先に使用する場合に、接続に必要な認証情報を設定します。</p>
+    <div class="tw">
+      <table>
+        <colgroup><col style="width:160px"><col></colgroup>
+        <thead><tr><th>項目</th><th>説明</th></tr></thead>
+        <tbody>
+          <tr><td>認証ID</td><td>ネットワーク共有フォルダへのアクセスに使用するユーザー名を入力します。</td></tr>
+          <tr><td>パスワード</td><td>対応するパスワードを入力します。</td></tr>
+          <tr><td>認証情報を保存</td><td>入力した認証情報を保存します。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notice n-info">
+      <span class="ni">ℹ️</span>
+      <p>ローカルフォルダを使用する場合や、Windowsのログイン情報でそのまま接続できる場合は入力不要です。</p>
     </div>
   </section>
 
@@ -988,6 +1004,11 @@
   <section id="android-measure">
     <h2>⚖️ Android版 ― 計測の基本操作</h2>
 
+    <div class="notice n-warn">
+      <span class="ni">⚠️</span>
+      <p><strong>初めてご使用の際は、計測前に必ず校正を行ってください。</strong> 校正が完了していない場合、正確な重量が表示されません。校正手順については「<a href="#android-calibration" style="color:inherit;">Android版 ― 校正</a>」をご参照ください。</p>
+    </div>
+
     <h3>画面構成</h3>
     <div class="tw">
       <table>
@@ -1048,7 +1069,7 @@
 
     <h3>PC版とのデータ共有について</h3>
     <p>データの保存先がスマートフォンの<strong>端末内ストレージ</strong>の場合、PC版とは自動では同期されません。端末内のデータを他の端末でも使いたい場合は、エクスポートしたファイルを別の端末でインポートすることで復元できます。</p>
-    <p>保存先を<strong>外部ストレージ（SDカードや共有フォルダなど）</strong>に設定している場合は、PC版と同一のデータを参照することができます。</p>
+    <p>保存先を<strong>外部ストレージ（共有フォルダ）</strong>に設定している場合は、PC版と同一のデータを参照することができます。</p>
   </section>
 
   <section id="android-calibration">
@@ -1076,13 +1097,13 @@
       </li>
       <li>
         <div>
-          <div class="step-title">分銅の重量を入力して「保存」をタップ</div>
+          <div class="step-title">分銅の重量を入力してください</div>
           <div class="step-desc">次回以降も同じ値が自動で入力されます。</div>
         </div>
       </li>
       <li>
         <div>
-          <div class="step-title">「キャリブレーション実行」をタップ</div>
+          <div class="step-title">「校正開始」をタップ</div>
         </div>
       </li>
       <li>
@@ -1117,7 +1138,7 @@
       <li>
         <div>
           <div class="step-title">ホールドを ON にする</div>
-          <div class="step-desc">PC版はメイン画面の「ホールド」ボタン、Android版は「ホールドOFF」のトグルをタップします。🔒 アイコンはホールド機能のON/OFFを示します。</div>
+          <div class="step-desc">PC版はメイン画面右下の「ホールド：OFF」ボタン、Android版は「ホールドOFF」のトグルをタップします。🔒 アイコンはホールド機能のON/OFFを示します。</div>
         </div>
       </li>
       <li>
@@ -1140,8 +1161,8 @@
   <section id="autozero">
     <h2>⟳ 自動ゼロリセット</h2>
 
-    <p>計量物を取り除いて重量がゼロ付近で安定したとき、自動的にゼロリセットを行う機能です。同じ容器を繰り返し使う作業などで便利です。</p>
-    <p>PC版・Android版ともに、メイン画面の「自動ゼロリセット」ボタンで ON / OFF を切り替えられます。PC版の設定では、起動時に自動で ON にすることもできます。</p>
+    <p>計測開始をしたとき、自動的にゼロリセットを行ってから計測を開始する機能です。</p>
+    <p>PC版・Android版ともに、メイン画面の「自動ゼロリセット」ボタンで ON / OFF を切り替えられます。詳細設定で起動時に自動で ON にすることもできます。</p>
   </section>
 
   <section id="overload">
@@ -1184,31 +1205,36 @@
   <section id="faq">
     <h2>❓ よくある質問</h2>
 
-    <details>
-      <summary>PC版が起動しない・エラーが出る</summary>
-      <div class="faq-body">
-        <p>本体が USB でパソコンに接続されているか確認してください。また、本体の LED が点灯していることも確認してください。ソフトを一度閉じて、本体を USB から抜き差ししてから再起動してみてください。</p>
-      </div>
-    </details>
 
     <details>
-      <summary>接続はできているのに重量が表示されない</summary>
+      <summary>接続はできているのに重量が変化しない</summary>
       <div class="faq-body">
-        <p>「測定開始」ボタンをクリック（またはタップ）してから計量してください。測定開始前は重量は更新されません。</p>
+        <p>本体のUSBを外し、再起動を行ってください。</p>
       </div>
     </details>
 
     <details>
       <summary>重量の値がふらついて安定しない</summary>
       <div class="faq-body">
-        <p>ロードセルが振動しやすい場所に置かれていないか確認してください。ホールド機能をONにすると、安定したときの値を自動で固定できます。「ホールド設定」の安定判定時間を長くすると、より確実に安定値を捉えられます。</p>
+        <p>ロードセルが振動しやすい場所に置かれていないか確認してください。<BR>
+デフォルトの設定だと小数点2桁まで表示しているのでふらついているように見えやすいです。気になるようであれば小数点1桁に設定してください。<BR>
+ホールド機能をONにすると、安定したときの値を自動で固定できます。「ホールド設定」の安定判定時間を長くすると、より確実に安定値を捉えられます。<BR>
+ロードセルの対応重量を大きくするとふらつきが大きくなります。計測物に合ったロードセルを選定してください。</p>
       </div>
     </details>
 
     <details>
       <summary>校正したのに重量がずれている</summary>
       <div class="faq-body">
-        <p>校正に使った分銅の重量が正確かどうかをご確認ください。また、校正中にロードセルや台座が動いていると精度が下がります。振動のない安定した場所で再度校正してください。</p>
+        <p>校正に使った分銅の重量が正確かどうかをご確認ください。また、校正中にロードセルや台座が動いていると精度が下がります。振動のない安定した場所で再度校正してください。校正した場所から移動した場合もずれる可能性があります。</p>
+      </div>
+    </details>
+
+    <details>
+      <summary>計測物が軽すぎて正確な重量がわからない</summary>
+      <div class="faq-body">
+        <p>計測物が軽い場合はロードセルの対応重量が軽い物に変更し、10個または10mなどで計測し10で割った数値を登録してください。<BR>
+また、詳細設定の小数点以下の設定を1桁から2桁や3桁に変更すると細かい重量が計測できます。</p>
       </div>
     </details>
 
@@ -1219,7 +1245,7 @@
         <ul>
           <li>お使いの本体が GravityA-BT（Bluetooth版）であること</li>
           <li>スマートフォンの Bluetooth がオンになっていること</li>
-          <li>本体の LED が<span class="led led-green" style="margin-left:4px;"></span>緑または<span class="led led-blue" style="margin-left:4px;"></span>青に点灯していること</li>
+          <li>本体の LED が<span class="led led-green" style="margin-left:4px;"></span>緑に点灯していること</li>
           <li>スマートフォンの設定でアプリへの位置情報の権限が許可されていること</li>
         </ul>
       </div>
@@ -1235,14 +1261,14 @@
     <details>
       <summary>電源を切ると校正値はリセットされますか？</summary>
       <div class="faq-body">
-        <p>いいえ。校正値は本体内部に記憶されるため、電源を切っても保持されます。通常、校正は最初の1回だけ行えば問題ありません。精度が気になる場合は再校正してください。</p>
+        <p>校正値は本体内部に記憶されるため、電源を切っても保持されます。ロードセルを変更した場合や、気温が著しく変化している場合は再度校正を行ってください。</p>
       </div>
     </details>
 
     <details>
       <summary>PC版のデータをバックアップしたい</summary>
       <div class="faq-body">
-        <p>GravityA.exe と同じ場所にある <strong>「gravity_data」フォルダ</strong> をまるごとコピーしてください。このフォルダに登録データがすべて保存されています。別の PC に移行する場合も、このフォルダをコピーするだけです。</p>
+        <p><strong>「gravity_data」フォルダ</strong> をまるごとコピーしてください。このフォルダに登録データがすべて保存されています。別の PC に移行する場合も、このフォルダをコピーするだけです。</p>
       </div>
     </details>
 
@@ -1252,6 +1278,15 @@
         <p>アプリのアンインストールや端末の初期化を行うとデータが削除されます。定期的に「データベース設定」→「エクスポート」でバックアップを取ることをおすすめします。</p>
       </div>
     </details>
+
+    <details>
+      <summary>共有フォルダの設定がわからない</summary>
+      <div class="faq-body">
+        <p>共有フォルダの作成方法などは状況によって様々ですのでサポートができません。<BR>
+システム管理者に相談をお願いします。</p>
+      </div>
+    </details>
+
 
   </section>
 
